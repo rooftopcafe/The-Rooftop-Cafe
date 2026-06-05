@@ -208,19 +208,7 @@ document.getElementById("total").innerHTML="Total ₹"+total;
 
 }
 function placeOrder(){
-for(let name in cart){
 
-let item=cart[name];
-
-message +=
-"• "+name+
-" x"+item.qty+
-" = ₹"+(item.qty*item.price)+
-"%0A";
-
-total += item.qty*item.price;
-
-}
 const name=document.getElementById("name").value;
 const table=document.getElementById("table").value;
 
@@ -241,11 +229,22 @@ let message=
 
 message+="Customer: "+name+"%0A";
 message+="Table: "+table+"%0A%0A";
-
 message+="Order:%0A";
+for(let name in cart){
 
+let item=cart[name];
 
-message+="%0ATotal: ₹"+total;
+message +=
+"• "+name+
+" x"+item.qty+
+" = ₹"+(item.qty*item.price)+
+"%0A";
+
+total += item.qty*item.price;
+
+}
+message+="%0A------------------%0A";
+message+="Total: ₹"+total;
 
 window.open(
 `https://wa.me/${ownerNumber}?text=${message}`,
