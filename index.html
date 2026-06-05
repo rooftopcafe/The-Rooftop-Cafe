@@ -229,7 +229,7 @@ alert("Enter Name");
 return;
 }
 
-if(cart.length==0){
+if(Object.keys(cart).length==0){
 alert("Cart Empty");
 return;
 }
@@ -244,11 +244,6 @@ message+="Table: "+table+"%0A%0A";
 
 message+="Order:%0A";
 
-cart.forEach(item=>{
-message+="• "+item.name+
-" ₹"+item.price+"%0A";
-total+=item.price;
-});
 
 message+="%0ATotal: ₹"+total;
 
