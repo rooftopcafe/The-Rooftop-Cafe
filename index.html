@@ -83,7 +83,7 @@ color:#4caf50;
 <input type="text" id="name" placeholder="Your Name">
 
 <input type="text" id="table" placeholder="Table Number">
-
+<div id="cartItems"></div>
 <div id="total">Total ₹0</div>
 
 <br>
@@ -177,7 +177,19 @@ updateCart();
 
 }
 function placeOrder(){
+for(let name in cart){
 
+let item=cart[name];
+
+message +=
+"• "+name+
+" x"+item.qty+
+" = ₹"+(item.qty*item.price)+
+"%0A";
+
+total += item.qty*item.price;
+
+}
 const name=document.getElementById("name").value;
 const table=document.getElementById("table").value;
 
