@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Rooftop Cafe</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#111;
+color:white;
+margin:0;
+padding:20px;
+}
+
+h1{
+text-align:center;
+color:#ffb347;
+}
+
+.category{
+margin-top:25px;
+}
+
+.item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#222;
+padding:10px;
+margin:8px 0;
+border-radius:10px;
+}
+
+button{
+background:#ff9800;
+border:none;
+padding:8px 12px;
+border-radius:5px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.cart{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+background:#000;
+padding:15px;
+border-top:2px solid #ff9800;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:5px 0;
+border-radius:5px;
+border:none;
+}
+
+#total{
+font-size:20px;
+font-weight:bold;
+color:#4caf50;
+}
+</style>
+</head>
+
+<body>
+
+<h1>The Rooftop Cafe</h1>
+
+<div id="menu"></div>
+
+<br><br><br><br><br><br><br><br>
+
+<div class="cart">
+
+<h3>Customer Details</h3>
+
+<input type="text" id="name" placeholder="Your Name">
+
+<input type="text" id="table" placeholder="Table Number">
+
+<div id="total">Total ₹0</div>
+
+<br>
+
+<button onclick="placeOrder()" style="width:100%">
+Place Order on WhatsApp
+</button>
+
+</div>
+
+<script>
+
+const ownerNumber="919876543210";
+
+const menu=[
+{name:"Kulhad Chai",price:15},
+{name:"Masala Chai",price:20},
+
+{name:"Veg Grilled Sandwich",price:60},
+{name:"Cheese Sandwich",price:70},
+{name:"Paneer Sandwich",price:80},
+
+{name:"Aloo Tikki Burger",price:40},
+{name:"Paneer Burger",price:70},
+{name:"Maharaja Burger",price:90},
+
+{name:"Plain Fries",price:60},
+{name:"Peri Peri Fries",price:70},
+
+{name:"Cheese Garlic Bread",price:75},
+
+{name:"Margarita Pizza",price:140},
+{name:"Corn Cheese Pizza",price:160},
+{name:"Cheese Burst Pizza",price:300},
+
+{name:"Vanilla Shake",price:50},
+{name:"Chocolate Shake",price:50},
+
+{name:"Cold Coffee",price:60},
+
+{name:"Veg Momos",price:60},
+{name:"Fried Momos",price:80}
+];
+
+let cart=[];
+
+const menuDiv=document.getElementById("menu");
+
+menu.forEach(item=>{
+menuDiv.innerHTML+=`
+<div class="item">
+<span>${item.name} - ₹${item.price}</span>
+<button onclick="addToCart('${item.name}',${item.price})">
+Add
+</button>
+</div>
+`;
+});
+
+function addToCart(name,price){
+cart.push({name,price});
+updateTotal();
+}
+
+function updateTotal(){
+let total=0;
+
+cart.forEach(item=>{
+total+=item.price;
+});
+
+document.getElementById("total").innerHTML=
+"Total ₹"+total;
+}
+
+function placeOrder(){
+
+const name=document.getElementById("name").value;
+const table=document.getElementById("table").value;
+
+if(name==""){
+alert("Enter Name");
+return;
+}
+
+if(cart.length==0){
+alert("Cart Empty");
+return;
+}
+
+let total=0;
+
+let message=
+"☕ THE ROOFTOP CAFE%0A%0A";
+
+message+="Customer: "+name+"%0A";
+message+="Table: "+table+"%0A%0A";
+
+message+="Order:%0A";
+
+cart.forEach(item=>{
+message+="• "+item.name+
+" ₹"+item.price+"%0A";
+total+=item.price;
+});
+
+message+="%0ATotal: ₹"+total;
+
+window.open(
+`https://wa.me/${ownerNumber}?text=${message}`,
+'_blank'
+);
+
+}
+
+</script>
+
+</body>
+</html>
