@@ -176,6 +176,37 @@ delete cart[name];
 updateCart();
 
 }
+  function updateCart(){
+
+let total=0;
+let html="<h3>Cart</h3>";
+
+for(let name in cart){
+
+let item=cart[name];
+
+total += item.price * item.qty;
+
+html += `
+<div style="margin:8px 0;">
+<b>${name}</b><br>
+
+<button onclick="decreaseQty('${name}')">-</button>
+
+ ${item.qty}
+
+<button onclick="increaseQty('${name}')">+</button>
+
+ ₹${item.price * item.qty}
+</div>
+`;
+
+}
+
+document.getElementById("cartItems").innerHTML=html;
+document.getElementById("total").innerHTML="Total ₹"+total;
+
+}
 function placeOrder(){
 for(let name in cart){
 
