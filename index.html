@@ -128,7 +128,7 @@ const menu=[
 {name:"Fried Momos",price:80}
 ];
 
-let cart=[];
+let cart={};
 
 const menuDiv=document.getElementById("menu");
 
@@ -144,21 +144,38 @@ Add
 });
 
 function addToCart(name,price){
-cart.push({name,price});
-updateTotal();
+if(cart[name]){
+  cart[name].qty++;
+}
+ else{
+   cart[name]={
+     price:price,
+     qty:1
+   };
+ }
+  
+  updateCart();
 }
 
-function updateTotal(){
-let total=0;
+function increaseQty(name){
 
-cart.forEach(item=>{
-total+=item.price;
-});
+cart[name].qty++;
 
-document.getElementById("total").innerHTML=
-"Total ₹"+total;
+updateCart();
+
 }
 
+function decreaseQty(name){
+
+cart[name].qty--;
+
+if(cart[name].qty<=0){
+delete cart[name];
+}
+
+updateCart();
+
+}
 function placeOrder(){
 
 const name=document.getElementById("name").value;
