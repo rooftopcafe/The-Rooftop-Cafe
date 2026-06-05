@@ -6,6 +6,18 @@
 <title>The Rooftop Cafe</title>
 
 <style>
+  .logo-container{
+position:fixed;
+top:15px;
+left:15px;
+z-index:1000;
+}
+
+.logo-container img{
+width:120px;
+height:auto;
+border-radius:10px;
+}
 body{
 font-family:Arial,sans-serif;
 background:#111;
@@ -122,7 +134,10 @@ box-sizing:border-box;
 </style>
 </head>
 
-<body>
+<body> 
+<div class="logo-container">
+  <img src ="logo.png" alt="The Rooftop Cafe Logo">
+</div>
 
 <h1>The Rooftop Cafe</h1>
 
