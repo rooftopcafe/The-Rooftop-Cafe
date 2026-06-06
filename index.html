@@ -171,7 +171,17 @@ Place Order on WhatsApp
 <script>
 
 const ownerNumber="919521121759";
-
+const categoryImages = {
+"Chai":"images/chai.jpg",
+"Sandwich(Big Bread)":"images/sandwich.jpg",
+"Burgers":"images/burger.jpg",
+"French Fries":"images/fries.jpg",
+"Pizza":"images/pizza.jpg",
+"Shake":"images/shake.jpg",
+"Hot Coffee":"images/coffee.jpg",
+"Cold Coffee":"images/coldcoffee.jpg",
+"Momos":"images/momos.jpg"
+};
 const menu={
   "Chai":[
 {name:"Kulhad Chai",price:15},
@@ -262,9 +272,10 @@ const menuDiv=document.getElementById("menu");
 for(let category in menu){
 
 menuDiv.innerHTML += `
-<h2 style="color:#ff9800;margin-top:30px;">
-${category}
-</h2>
+<div class="category-banner">
+    <img src="${categoryImages[category]}" alt="${category}">
+    <div class="category-title">${category}</div>
+</div>
 `;
 
 menu[category].forEach(item=>{
