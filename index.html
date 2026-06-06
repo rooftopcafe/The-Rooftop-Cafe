@@ -35,6 +35,20 @@ padding:20px;
 h1{
 text-align:center;
 color:#ffb347;
+position:relative;
+animation: floatText 8s linear infinite;
+}
+
+@keyframes floatText{
+0%{
+transform:translateX(-40%);
+}
+50%{
+transform:translateX(40%);
+}
+100%{
+transform:translateX(-40%);
+}
 }
 
 .category{
